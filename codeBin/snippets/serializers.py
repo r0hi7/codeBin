@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from snippets.models import Snippet, LANGUAGES,STYLECHOICES,LEXERS
 
+"""
 class SnippetSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(required=False,allow_blank=True,max_length=100)
@@ -21,3 +22,11 @@ class SnippetSerializer(serializers.Serializer):
         instance.style = validated_data.get('style', instance.style)
         instance.save()
         return instance
+"""
+
+#Using ModelSerilizers to Serilize JSON Code
+class SnippetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Snippet
+        fields = ('id','title','linenos','language','style','code')
+    
